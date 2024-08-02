@@ -12,7 +12,7 @@ const conectar = async ()=>{
 
 // BUSCANDO A TABELA NO MYSQL
 
-const TodosClientes = async()=>{
+const todosClientes = async()=>{
     const con=await conectar()
     const linhas = con.query('SELECT * FROM cliente_node ')
     return await linhas
@@ -20,7 +20,7 @@ const TodosClientes = async()=>{
 
 //Aprendendo a fazer inserts
 
-const InseriClientes = async(cliente)=>{
+const inseriClientes = async(cliente)=>{
     const con=await conectar()
     const sql='INSERT INTO cliente_node (nome,idade) VALUES (?,?)'
     const valores=[cliente.nome,cliente.idade]
@@ -29,12 +29,22 @@ const InseriClientes = async(cliente)=>{
 
 //Atualizando os clientes
 
-const AtualizaClientes = async(id,cliente)=>{
+const atualizaClientes = async(id,cliente)=>{
     const con=await conectar()
-    const sql=' UPDATE cliente_node SET nome=?,idade=? WHERE ID =?)'
+    const sql=' UPDATE cliente_node SET nome=?,idade=? WHERE ID =?'
     const valores=[cliente.nome,cliente.idade,id]
+    await con.query(sql,valores)    
+}
+
+//Deletando clientes
+
+const deletarClientes = async(id,cliente)=>{
+    const con=await conectar()
+    const sql=' DELETE FROM cliente_node WHERE ID =?;'
+    const valores=[id]
     await con.query(sql,valores)
+
     
 }
 
-module.exports = {TodosClientes,InseriClientes}
+module.exports = {todosClientes,inseriClientes,atualizaClientes,deletarClientes}

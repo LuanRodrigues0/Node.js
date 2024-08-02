@@ -13,19 +13,27 @@
     //const nom="lndrhrsh"
     //const ida=28
 
-   // await db.InseriClientes({nome:nom,idade:ida})
+   // await db.inseriClientes({nome:nom,idade:ida})
 
-
+   //atualizando clientes
    
+    // const id=4
+    // const nom="lndrhrsh"
+    // const ida=28
     
-    const nom="lndrhrsh"
-    const ida=28
-    const id=2
-    await db.InseriClientes({nome:nom,idade:ida})
-    console.log('cliente' + 'atualizado')
+    // await db.atualizaClientes(id,{nome:nom,idade:ida})
+    // console.log('cliente' +id+ 'atualizado')
 
+
+   //deletando clientes
+     
+    const id=3
+    await db.deletarClientes(id)
+    console.log('Cliente' + id + 'foi deletado do banco de dados')
+
+    
 
     console.log("Obter todos os clientes")
-    const clientes=await db.TodosClientes()
+    const clientes=await db.todosClientes()
     console.log(clientes)
 })()
